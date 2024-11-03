@@ -1,12 +1,12 @@
 package main
 
 import (
+	"CustomerCRUD/pkg/server"
 	"net/http"
 	"os"
 	"strconv"
 
 	"CustomerCRUD/pkg/repository"
-	"CustomerCRUD/server"
 	"CustomerCRUD/utils"
 
 	"github.com/joho/godotenv"
