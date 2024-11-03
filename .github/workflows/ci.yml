@@ -1,0 +1,65 @@
+# .github/workflows/ci.yml
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.23.1' # Adjust to your Go version
+
+      - name: Run Go format
+        run: make format
+
+      - name: Check for uncommitted changes
+        run: git diff --exit-code
+        shell: bash
+        # This will make the job fail if there are any unformatted files.
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.23.1' # Adjust to your Go version
+
+      - name: Run Unit Tests
+        run: make unit
+
+  integration-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.23.1' # Adjust to your Go version
+
+      - name: Build Docker image
+        run: make build-image
+
+      - name: Run Integration Tests
+        run: make integration
