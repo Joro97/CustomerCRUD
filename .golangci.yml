@@ -1,0 +1,15 @@
+# .golangci.yml
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - revive
+    - staticcheck
+    - unused
+  disable:
+    - typecheck  # Disable if you don't want to check types

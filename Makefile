@@ -7,8 +7,10 @@ IMAGE_TAG := latest
 format:
 	gofmt -w .
 
+# brew install golangci-lint
 linter:
-	golint ./...
+	golangci-lint run ./...
+	#TODO: fix the linter errors
 
 integration: # TODO Higher tests coverage
 	go test -v -coverprofile cover.out ./... && \
