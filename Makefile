@@ -1,5 +1,8 @@
-include .env
-export
+ifneq (,$(wildcard .env))
+    include .env
+    export
+endif
+
 
 IMAGE_NAME := customer-service
 IMAGE_TAG := latest
