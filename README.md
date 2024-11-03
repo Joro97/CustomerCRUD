@@ -33,8 +33,7 @@ There is a Makefile that has simple commands for user convenience. Some of them 
 2. Make integration - will run all the tests of the application and provide a basic coverage report
 3. Make build-image - builds a docker image for the server. `docker run customer-service` will start the service inside the container
 4. Make deploy will create a local kind cluster and install a helm chart with the application into it. Make sure to run `kubectl port-forward svc/customer-service 8080:8080` afterwards and you can call your app from the kind cluster like `http://localhost:8080/customers`
-5. There are a few others <br>
-   The server can also be started manually by running `go run cmd/main.go`. A tool like Postman or cURL can be used to manually validate the endpoints, examples:
+5. The server can also be started manually by running `go run cmd/main.go`. A tool like Postman or cURL can be used to manually validate the endpoints, examples:
 `   curl --location 'localhost:8080/customers' \
    --header 'Content-Type: application/json' \
    --data-raw '{
