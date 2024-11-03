@@ -1,0 +1,8 @@
+image:
+  repository: customer-service
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 8080
