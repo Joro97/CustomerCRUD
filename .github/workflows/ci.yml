@@ -65,4 +65,4 @@ jobs:
           go-version: '1.23.1'
 
       - name: Run Integration Tests
-        run: make integration
+        run: make integration-ci

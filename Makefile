@@ -20,6 +20,9 @@ integration: # TODO Higher tests coverage
     go tool cover -html=cover.out -o cover.html && \
     open cover.html
 
+integration-ci:
+	go test -v ./...
+
 unit:
 	go test -v ./pkg/server
 
