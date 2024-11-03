@@ -34,3 +34,8 @@ There is a Makefile that has simple commands for user convenience. Some of them 
 4. Make deploy will create a local kind cluster and install a helm chart with the application into it. Make sure to run `kubectl port-forward svc/customer-service 8080:8080` afterwards and you can call your app from the kind cluster like `http://localhost:8080/customers`
 5. There are a few others <br>
    The server can also be started manually by running `go run cmd/main.go`. A tool like Postman or cURL can be used to manually validate the endpoints
+
+# Improvements:
+For Observability we can have and architecture that would leverage fluent-bit (can be installed into our cluster easily) to forward
+the pod logs (we should update them to structured) to something like ELK or Splunk. For pods health metrics we could leverage
+Prometheus and Grafana. All of those have very good open source operators that can be leveraged. 
