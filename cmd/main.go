@@ -5,6 +5,7 @@ import (
 	"strconv"
 
 	"CustomerCRUD/pkg/repository"
+	"CustomerCRUD/utils"
 
 	"github.com/joho/godotenv"
 	log "github.com/sirupsen/logrus"
@@ -24,4 +25,9 @@ func main() {
 
 	db, err := repository.GetDB(localDBBool, "DATABASE_URL")
 	defer db.Close()
+
+	dbURL := os.Getenv("DATABASE_URL")
+	if err := utils.RunMigrations(dbURL); err != nil {
+		log.Fatal("error running db migrations", err)
+	}
 }
