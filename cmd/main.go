@@ -1,10 +1,12 @@
 package main
 
 import (
+	"net/http"
 	"os"
 	"strconv"
 
 	"CustomerCRUD/pkg/repository"
+	"CustomerCRUD/server"
 	"CustomerCRUD/utils"
 
 	"github.com/joho/godotenv"
@@ -30,4 +32,12 @@ func main() {
 	if err := utils.RunMigrations(dbURL); err != nil {
 		log.Fatal("error running db migrations", err)
 	}
+
+	dbRepo := repository.NewCustomerRepository(db)
+
+	srv := server.NewServer(dbRepo)
+	srv.SetupRoutes()
+
+	log.Println("Server is running on port 8080")
+	log.Fatal(http.ListenAndServe(":8080", srv.Router))
 }
